@@ -30,7 +30,7 @@ pub fn Vm(comptime Reader: type, comptime Writer: type) type {
         }
 
         pub fn executeOne(self: *Self, instruction: *const Instruction) !void {
-            switch (instruction) {
+            switch (instruction.*) {
                 .stack_manipulation => |command| switch (command) {
                     .push => |num| try self.stack.append(num),
                     .duplicate => {
@@ -43,7 +43,9 @@ pub fn Vm(comptime Reader: type, comptime Writer: type) type {
                     // .swap,
                     // .discard,
                     // .slide => |num|,
+                    else => @panic("unimplemented"),
                 },
+                else => @panic("unimplemented"),
             }
         }
     };

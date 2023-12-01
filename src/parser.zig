@@ -398,7 +398,7 @@ pub const Number = struct {
     }
 
     pub fn clone(self: *const Number, allocator: Allocator) !Number {
-        return .{ .positive = self.positive, .abs_value = try self.abs_value.clone(allocator) };
+        return .{ .label = try self.label.clone(allocator) };
     }
 };
 
